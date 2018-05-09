@@ -1,4 +1,4 @@
-<form>
+<form class="my-5">
   <div class="form-group">
     <label for="camera">Date</label>
     <input type=date #roverDate>
@@ -13,11 +13,16 @@
       <option  value="MAHLI">Mars Hand Lens Imager</option>
     </select>
   </div>
-  <button (click)="getRoverImages(roverDate.value, roverCamera.value)">Get Photos</button>
+  <button (click)="getRoverImages(roverDate.value, roverCamera.value)">View Images</button>
+  <button (click)="saveRoverImages(roverDate.value, roverCamera.value)">Save All Images</button>
 </form>
+<div class="user-photos">
+  <h1>Curiousity Images</h1>
+  <a routerLink="user/photos">View Your Saved Photos</a>
+</div>
 
-<div *ngIf="photos===null">
-   <h3>There were no photos</h3>
+<div *ngIf="photos !== undefined && photos !== null">
+  <app-photos-list [childPhotos]="photos"></app-photos-list>
 </div>
 
 <div *ngIf="photos===null">
